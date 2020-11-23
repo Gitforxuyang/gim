@@ -54,6 +54,7 @@ func (m *gnetServer) PreWrite() {
 func (m *gnetServer) React(frame []byte, c gnet.Conn) (out []byte, action gnet.Action) {
 	gim := byteToGim(frame)
 	con := c.Context().(server.Conn)
+	con.SetVersion(gim.Version)
 	m.workPool.Submit(func() {
 		res, err := m.handler.Action(con, gim)
 		if err != nil {
@@ -75,11 +76,12 @@ func NewGNetServer(port int32, handler handler.IHandler) server.Server {
 }
 
 func (m *gnetServer) Run() {
+	fmt.Println("gnet server run")
 	err := gnet.Serve(m,
 		fmt.Sprintf("tcp://0.0.0.0:%d", m.port),
 		gnet.WithMulticore(true),
 		gnet.WithTCPKeepAlive(time.Minute*5),
-		gnet.WithCodec(&GimProtocol{}),
+		gnet.WithCodec(&codec{}),
 		gnet.WithTicker(false),
 	)
 	if err != nil {

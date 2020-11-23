@@ -8,4 +8,9 @@ type Conn interface {
 	GetRemoteAddr() string
 	SetUid(uid int64)
 	GetUid() int64
+	GetVersion() uint8
+	SetVersion(version uint8)
+	SetToken(token string)
+	GetToken() string
+	Write(gim *GimProtocol) error
 }

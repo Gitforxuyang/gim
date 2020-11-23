@@ -2,14 +2,14 @@ package utils
 
 import (
 	"fmt"
-	"gim/server/gnet"
+	"gim/server"
 	"gim/utils/skiplist"
 	"strconv"
 	"sync"
 )
 
 type WaitAckMsg struct {
-	Msg        *gnet.GimProtocol
+	Msg        *server.GimProtocol
 	RetryTime  int64 //下一次发起重试的时间
 	RetryCount int32 //重试次数
 	Uid        int64 //发送给谁
@@ -45,7 +45,7 @@ const (
 	RETRY_COUNT = 5
 )
 
-func (m *RetryList) AddRetryMsg(msg *gnet.GimProtocol, uid int64, msgId int64) error {
+func (m *RetryList) AddRetryMsg(msg *server.GimProtocol, uid int64, msgId int64) error {
 	m.Lock()
 	defer m.Unlock()
 	ack := WaitAckMsg{Msg: msg, RetryTime: NowMillisecond() + RETRY_DURATION,

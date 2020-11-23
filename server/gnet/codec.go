@@ -5,21 +5,20 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"gim/server"
 	"github.com/panjf2000/gnet"
 )
 
-type GimProtocol struct {
-	Version uint8
-	CmdId   uint8
-	BodyLen uint16
-	Data    []byte
-}
 
 const (
 	HEAD_LEN = 4
+	//单个请求消息最大6k
+	MAX_BODY_LEN = 6000
 )
+type codec struct {
 
-func (m *GimProtocol) Encode(c gnet.Conn, buf []byte) ([]byte, error) {
+}
+func (m *codec) Encode(c gnet.Conn, buf []byte) ([]byte, error) {
 	gim := byteToGim(buf)
 	buffer := &bytes.Buffer{}
 	if err := binary.Write(buffer, binary.BigEndian, gim.Version); err != nil {
@@ -39,12 +38,15 @@ func (m *GimProtocol) Encode(c gnet.Conn, buf []byte) ([]byte, error) {
 	return buffer.Bytes(), nil
 }
 
-func (m *GimProtocol) Decode(c gnet.Conn) ([]byte, error) {
-	fmt.Println("decode")
-	g := &GimProtocol{}
+func (m *codec) Decode(c gnet.Conn) (protocolBuf []byte, err error) {
+	g := &server.GimProtocol{}
+	defer func() {
+		fmt.Println(err)
+	}()
 	len, buf := c.ReadN(HEAD_LEN)
 	if len == 0 || len != HEAD_LEN {
-		return nil, errors.New("没有更多数据了")
+		err = errors.New("没有更多数据了")
+		return
 	}
 	headBuf := bytes.NewBuffer(buf)
 	binary.Read(headBuf, binary.BigEndian, &g.Version)
@@ -52,18 +54,25 @@ func (m *GimProtocol) Decode(c gnet.Conn) ([]byte, error) {
 	binary.Read(headBuf, binary.BigEndian, &g.BodyLen)
 	if !isCorrectCmdId(g.CmdId) {
 		c.ResetBuffer()
-		return nil, errors.New("错误的cmdId")
+		err = errors.New("错误的cmdId")
+		return
+	}
+	if g.BodyLen > MAX_BODY_LEN {
+		c.ResetBuffer()
+		err = errors.New("消息超过最大体积")
+		return
 	}
 	protocolLen := int(g.BodyLen + HEAD_LEN)
 	if g.BodyLen > 0 {
 		len, data := c.ReadN(protocolLen)
 		if len != protocolLen {
-			return nil, errors.New("body数据不全")
+			err = errors.New("body数据不全")
+			return
 		}
 		g.Data = data[HEAD_LEN:]
 	}
 	c.ShiftN(protocolLen)
-	protocolBuf := gimToByte(g)
+	protocolBuf = gimToByte(g)
 	return protocolBuf, nil
 }
 
@@ -74,7 +83,7 @@ func isCorrectCmdId(cmdId uint8) bool {
 	return false
 }
 
-func gimToByte(g *GimProtocol) ([]byte) {
+func gimToByte(g *server.GimProtocol) ([]byte) {
 	buf := &bytes.Buffer{}
 	err := binary.Write(buf, binary.BigEndian, g.Version)
 	if err != nil {
@@ -95,8 +104,8 @@ func gimToByte(g *GimProtocol) ([]byte) {
 	return buf.Bytes()
 }
 
-func byteToGim(buf []byte) (*GimProtocol) {
-	g := &GimProtocol{}
+func byteToGim(buf []byte) (*server.GimProtocol) {
+	g := &server.GimProtocol{}
 	buffer := bytes.NewBuffer(buf)
 	err := binary.Read(buffer, binary.BigEndian, &g.Version)
 	if err != nil {

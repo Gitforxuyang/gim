@@ -1,12 +1,17 @@
 package gnet
 
-import "github.com/panjf2000/gnet"
+import (
+	"gim/server"
+	"github.com/panjf2000/gnet"
+)
 
 type conn struct {
 	c          gnet.Conn
 	remoteAddr string
 	uid        int64
 	pingAt     int64
+	version    uint8
+	token      string
 }
 
 func (m *conn) SetPingAt(t int64) {
@@ -31,4 +36,24 @@ func (m *conn) SetUid(uid int64) {
 
 func (m *conn) GetUid() int64 {
 	return m.uid
+}
+
+func (m *conn) GetVersion() uint8 {
+	return m.version
+}
+
+func (m *conn) SetVersion(version uint8) {
+	m.version = version
+}
+
+func (m *conn) SetToken(token string) {
+	m.token = token
+}
+
+func (m *conn) GetToken() string {
+	return m.token
+}
+
+func (m *conn) Write(gim *server.GimProtocol) error {
+	return m.c.AsyncWrite(gimToByte(gim))
 }
