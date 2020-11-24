@@ -1,0 +1,30 @@
+# github.com/panjf2000/ants/v2 v2.4.3
+github.com/panjf2000/ants/v2
+github.com/panjf2000/ants/v2/internal
+# github.com/panjf2000/gnet v1.3.2
+github.com/panjf2000/gnet
+github.com/panjf2000/gnet/errors
+github.com/panjf2000/gnet/internal
+github.com/panjf2000/gnet/internal/logging
+github.com/panjf2000/gnet/internal/netpoll
+github.com/panjf2000/gnet/internal/reuseport
+github.com/panjf2000/gnet/pool/bytebuffer
+github.com/panjf2000/gnet/pool/goroutine
+github.com/panjf2000/gnet/pool/ringbuffer
+github.com/panjf2000/gnet/ringbuffer
+# github.com/valyala/bytebufferpool v1.0.0
+github.com/valyala/bytebufferpool
+# go.uber.org/atomic v1.7.0
+go.uber.org/atomic
+# go.uber.org/multierr v1.6.0
+go.uber.org/multierr
+# go.uber.org/zap v1.16.0
+go.uber.org/zap
+go.uber.org/zap/buffer
+go.uber.org/zap/internal/bufferpool
+go.uber.org/zap/internal/color
+go.uber.org/zap/internal/exit
+go.uber.org/zap/zapcore
+# golang.org/x/sys v0.0.0-20201119102817-f84b799fce68
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"gim/server"
 	"gim/utils"
+	"github.com/go-redis/redis/v7"
 	"sync"
 	"time"
 )
@@ -25,12 +26,14 @@ type handler struct {
 	authConnections     sync.Map
 	waitAuthConnections sync.Map
 	retryList           *utils.RetryList
+	redis               *redis.Client
 }
 
-func NewHandler() IHandler {
+func NewHandler(redis *redis.Client) IHandler {
 	h := handler{retryList: utils.NewRetryList()}
 	h.retrySend()
 	h.checkConnectionActive()
+	h.redis = redis
 	return &h
 }
 
@@ -63,8 +66,7 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 	}()
 	switch gim.CmdId {
 	case server.CmdId_Ping:
-		conn.SetPingAt(utils.NowMillisecond())
-		res = server.MakePong(conn)
+		res, err = m.ping(conn, gim)
 	case server.CmdId_AuthReq:
 	case server.CmdId_LogoutReq:
 	case server.CmdId_FetchMessageReq:
