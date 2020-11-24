@@ -1,12 +1,12 @@
-package gnet
+package ws
 
 import (
 	"gim/server"
-	"github.com/panjf2000/gnet"
+	"github.com/gorilla/websocket"
 )
 
 type conn struct {
-	c          gnet.Conn
+	c          *websocket.Conn
 	remoteAddr string
 	uid        int64
 	pingAt     int64
@@ -55,5 +55,5 @@ func (m *conn) GetToken() string {
 }
 
 func (m *conn) Write(gim *server.GimProtocol) error {
-	return m.c.AsyncWrite(server.GimToByte(gim))
+	return m.c.WriteMessage(1, server.GimToByte(gim))
 }

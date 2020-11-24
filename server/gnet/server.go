@@ -52,7 +52,7 @@ func (m *gnetServer) PreWrite() {
 }
 
 func (m *gnetServer) React(frame []byte, c gnet.Conn) (out []byte, action gnet.Action) {
-	gim := byteToGim(frame)
+	gim := server.ByteToGim(frame)
 	con := c.Context().(server.Conn)
 	con.SetVersion(gim.Version)
 	m.workPool.Submit(func() {
@@ -60,7 +60,7 @@ func (m *gnetServer) React(frame []byte, c gnet.Conn) (out []byte, action gnet.A
 		if err != nil {
 			fmt.Println("handler出现error，直接忽略:", err)
 		} else {
-			c.AsyncWrite(gimToByte(res))
+			c.AsyncWrite(server.GimToByte(res))
 		}
 	})
 	return

@@ -1,5 +1,11 @@
 package server
 
+import (
+	"bytes"
+	"encoding/binary"
+	"fmt"
+)
+
 type GimProtocol struct {
 	Version uint8
 	CmdId   uint8
@@ -32,7 +38,62 @@ const (
 	CmdId_SyncLastIdResp   uint8 = 110
 )
 
+const (
+	HEAD_LEN = 4
+	//单个请求消息最大6k
+	MAX_BODY_LEN = 6000
+)
+
 func MakePong(conn Conn) *GimProtocol {
 	gim := GimProtocol{CmdId: CmdId_Pong, Version: conn.GetVersion()}
 	return &gim
+}
+
+func GimToByte(g *GimProtocol) ([]byte) {
+	buf := &bytes.Buffer{}
+	err := binary.Write(buf, binary.BigEndian, g.Version)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = binary.Write(buf, binary.BigEndian, g.CmdId)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = binary.Write(buf, binary.BigEndian, g.BodyLen)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = binary.Write(buf, binary.BigEndian, g.Data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return buf.Bytes()
+}
+
+func ByteToGim(buf []byte) (*GimProtocol) {
+	g := &GimProtocol{}
+	buffer := bytes.NewBuffer(buf)
+	err := binary.Read(buffer, binary.BigEndian, &g.Version)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = binary.Read(buffer, binary.BigEndian, &g.CmdId)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = binary.Read(buffer, binary.BigEndian, &g.BodyLen)
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = binary.Read(buffer, binary.BigEndian, &g.Data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return g
+}
+func IsCorrectCmdId(cmdId uint8) bool {
+	if cmdId == 1 {
+		return true
+	}
+	return false
 }
