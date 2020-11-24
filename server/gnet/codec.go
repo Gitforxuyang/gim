@@ -9,15 +9,15 @@ import (
 	"github.com/panjf2000/gnet"
 )
 
-
 const (
 	HEAD_LEN = 4
 	//单个请求消息最大6k
 	MAX_BODY_LEN = 6000
 )
-type codec struct {
 
+type codec struct {
 }
+
 func (m *codec) Encode(c gnet.Conn, buf []byte) ([]byte, error) {
 	gim := byteToGim(buf)
 	buffer := &bytes.Buffer{}
@@ -41,7 +41,9 @@ func (m *codec) Encode(c gnet.Conn, buf []byte) ([]byte, error) {
 func (m *codec) Decode(c gnet.Conn) (protocolBuf []byte, err error) {
 	g := &server.GimProtocol{}
 	defer func() {
-		fmt.Println(err)
+		if err != nil && err.Error() != "没有更多数据了" {
+			fmt.Println(err)
+		}
 	}()
 	len, buf := c.ReadN(HEAD_LEN)
 	if len == 0 || len != HEAD_LEN {

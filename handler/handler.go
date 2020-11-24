@@ -31,13 +31,15 @@ type handler struct {
 
 func NewHandler(redis *redis.Client) IHandler {
 	h := handler{retryList: utils.NewRetryList()}
-	h.retrySend()
-	h.checkConnectionActive()
+	go h.retrySend()
+	go h.checkConnectionActive()
 	h.redis = redis
 	return &h
 }
 
 func (m *handler) Open(conn server.Conn) error {
+	conn.SetPingAt(utils.NowMillisecond())
+	m.waitAuthConnections.Store(conn.GetRemoteAddr(), conn)
 	return nil
 }
 
@@ -48,6 +50,17 @@ func (m *handler) Close(conn server.Conn) error {
 	} else {
 		m.authConnections.Delete(conn.GetUid())
 	}
+	return nil
+}
+
+func (m *handler) _close(conn server.Conn) error {
+	if conn.GetUid() == 0 {
+		m.waitAuthConnections.Delete(conn.GetRemoteAddr())
+		//从redis中删除状态
+	} else {
+		m.authConnections.Delete(conn.GetUid())
+	}
+	conn.Close()
 	return nil
 }
 
@@ -86,6 +99,7 @@ func (m *handler) retrySend() {
 	defer func() {
 		if e := recover(); e != nil {
 			fmt.Println("retrySend panic:", e)
+			m.retrySend()
 		}
 	}()
 	for {
@@ -122,6 +136,7 @@ func (m *handler) checkConnectionActive() {
 	defer func() {
 		if e := recover(); e != nil {
 			fmt.Println("CheckConnectionActive panic:", e)
+			m.checkConnectionActive()
 		}
 	}()
 
@@ -142,7 +157,7 @@ func (m *handler) checkConnectionActive() {
 			}
 			//如果最近一次活跃时间在规定时间前，则关闭
 			if conn.GetPingAt()+CONN_ACTIVE_TIME < utils.NowMillisecond() {
-				m.Close(conn)
+				m._close(conn)
 			}
 			return true
 		})
@@ -160,7 +175,7 @@ func (m *handler) checkConnectionActive() {
 			}
 			//如果最近一次活跃时间在规定时间前，则关闭
 			if conn.GetPingAt()+CONN_ACTIVE_TIME < utils.NowMillisecond() {
-				m.Close(conn)
+				m._close(conn)
 			}
 			return true
 		})

@@ -28,18 +28,18 @@ func (m *gnetServer) OnShutdown(server gnet.Server) {
 
 func (m *gnetServer) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
 	fmt.Println("连接建立：", c.RemoteAddr())
-	con := conn{remoteAddr: c.RemoteAddr().String()}
+	con := conn{remoteAddr: c.RemoteAddr().String(), c: c}
 	err := m.handler.Open(&con)
 	if err != nil {
 		fmt.Println("因为连接建立错误，关闭连接 :", con.remoteAddr)
 		return nil, gnet.Close
 	}
-	c.SetContext(con)
+	c.SetContext(&con)
 	return nil, 0
 }
 
 func (m *gnetServer) OnClosed(c gnet.Conn, err error) (action gnet.Action) {
-	fmt.Println("连接关闭：", c.RemoteAddr(), err)
+	fmt.Println("连接关闭：", c.RemoteAddr(), "err:", err)
 	con := c.Context().(server.Conn)
 	err = m.handler.Close(con)
 	if err != nil {
