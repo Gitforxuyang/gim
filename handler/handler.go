@@ -56,15 +56,31 @@ func (m *handler) Close(conn server.Conn) error {
 func (m *handler) _close(conn server.Conn) error {
 	if conn.GetUid() == 0 {
 		m.waitAuthConnections.Delete(conn.GetRemoteAddr())
-		//从redis中删除状态
 	} else {
 		m.authConnections.Delete(conn.GetUid())
+		//从redis中删除状态
+		m.redis.Del(userOnlineStatusKey(conn.GetUid()))
 	}
 	conn.Close()
 	return nil
 }
 
+//关闭服务，下线所有client
 func (m *handler) Shutdown() {
+	m.waitAuthConnections.Range(func(key, value interface{}) bool {
+		c, ok := value.(server.Conn)
+		if ok {
+			m._close(c)
+		}
+		return true
+	})
+	m.authConnections.Range(func(key, value interface{}) bool {
+		c, ok := value.(server.Conn)
+		if ok {
+			m._close(c)
+		}
+		return true
+	})
 }
 
 func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server.GimProtocol, err error) {

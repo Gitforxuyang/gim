@@ -21,9 +21,9 @@ func (m *gnetServer) OnInitComplete(server gnet.Server) (action gnet.Action) {
 }
 
 func (m *gnetServer) OnShutdown(server gnet.Server) {
-	fmt.Println("服务开始关闭")
-	m.handler.Shutdown()
-	fmt.Println("服务关闭完成")
+	//fmt.Println("服务开始关闭")
+	//m.handler.Shutdown()
+	//fmt.Println("服务关闭完成")
 }
 
 func (m *gnetServer) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {

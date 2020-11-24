@@ -24,4 +24,6 @@ func main() {
 	signal.Notify(c, syscall.SIGTERM, syscall.SIGINT)
 	s := <-c
 	fmt.Println("接收到信号关闭:", s)
+	handle.Shutdown()
+	fmt.Println("关闭服务完成")
 }
