@@ -39,7 +39,7 @@ func (m *gnetServer) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
 }
 
 func (m *gnetServer) OnClosed(c gnet.Conn, err error) (action gnet.Action) {
-	fmt.Println("连接关闭：", c.RemoteAddr(), "err:", err)
+	//fmt.Println("连接关闭：", c.RemoteAddr(), "err:", err)
 	con := c.Context().(server.Conn)
 	err = m.handler.Close(con)
 	if err != nil {

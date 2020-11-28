@@ -23,6 +23,14 @@ func StructToJson(object interface{}) (string, error) {
 	return string(str), nil
 }
 
+func StructToJsonOrError(object interface{}) (string) {
+	str, err := json.Marshal(object)
+	if err != nil {
+		return err.Error()
+	}
+	return string(str)
+}
+
 func PrintStrcut(obj interface{}) {
 	str, _ := json.Marshal(obj)
 	fmt.Println(string(str))

@@ -2,7 +2,7 @@ package redis
 
 import (
 	"gim/conf"
-	"gim/utils"
+	"gim/infra/utils"
 	"github.com/go-redis/redis/v7"
 )
 

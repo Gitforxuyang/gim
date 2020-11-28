@@ -2,7 +2,7 @@ package conf
 
 import (
 	"fmt"
-	"gim/utils"
+	"gim/infra/utils"
 	"github.com/spf13/viper"
 )
 

@@ -92,7 +92,22 @@ func ByteToGim(buf []byte) (*GimProtocol) {
 	return g
 }
 func IsCorrectCmdId(cmdId uint8) bool {
-	if cmdId == 1 {
+	switch cmdId {
+	case CmdId_Ping:
+		return true
+	case CmdId_AuthReq:
+		return true
+	case CmdId_SyncMessageReq:
+		return true
+	case CmdId_LogoutReq:
+		return true
+	case CmdId_SendMessageReq:
+		return true
+	case CmdId_FetchMessageReq:
+		return true
+	case CmdId_SyncLastIdReq:
+		return true
+	case CmdId_NotifyAck:
 		return true
 	}
 	return false

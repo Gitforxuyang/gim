@@ -37,6 +37,13 @@ func (m *handler) handleMapping(cmdId uint8) *mapping {
 		}
 		_mapping.handler = m.ping
 		_mapping.cmdId = server.CmdId_Pong
+	case server.CmdId_AuthReq:
+		_mapping.msg = func() proto.Message {
+			return &gim.AuthReq{}
+		}
+		_mapping.cmdId = server.CmdId_AuthResp
+		_mapping.handler = m.auth
 	}
+
 	return _mapping
 }

@@ -3,7 +3,7 @@ module gim
 go 1.13
 
 require (
-	github.com/bwmarrin/snowflake v0.3.0 // indirect
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/go-redis/redis/v7 v7.4.0
 	github.com/gogo/protobuf v1.2.1
 	github.com/golang/protobuf v1.3.2

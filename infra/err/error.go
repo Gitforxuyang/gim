@@ -20,4 +20,5 @@ var (
 	UnknownError = &GimError{Code: 1001, Msg: "未知错误"}
 	//错误码定义规范 1000-1999 系统性错误 比如数据库连接异常 网络错误等 2000-2999 业务性错误，比如用户已登录 用户未登录等
 	UserNotLoginError = &GimError{Code: 2001, Msg: "用户未登录"}
+	ParamError        = &GimError{Code: 2002, Msg: "参数错误"}
 )

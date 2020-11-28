@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 	"gim/server"
-	"gim/utils/skiplist"
+	"gim/infra/utils/skiplist"
 	"strconv"
 	"sync"
 )

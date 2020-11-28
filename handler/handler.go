@@ -96,10 +96,10 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 			err = errors.New(fmt.Sprintf("action panic err: %s", e))
 		}
 		if err != nil {
-			logrus.Errorln("action error: ", err)
+			logrus.Errorln("action error: ", err, "uuid:", conn.GetUUID())
 		}
 	}()
-	logrus.Debugln("action version:", gim.Version, "cmdId:", gim.CmdId)
+	logrus.Debugln("action version:", gim.Version, "cmdId:", gim.CmdId, "uuid:", conn.GetUUID())
 	_mapping := m.handleMapping(gim.CmdId)
 	msg := _mapping.msg()
 	err = proto.Unmarshal(gim.Data, msg)
@@ -108,7 +108,7 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 	}
 	resMsg, err := _mapping.handler(conn, msg)
 	if err != nil {
-		logrus.Errorln("action出现错误,", err.Error())
+		logrus.Errorln("action出现错误,err:", err.Error(), "uuid:", conn.GetUUID())
 		if e, ok := err.(*err2.GimError); ok {
 			resMsg = &gim2.BaseResp{Code: e.Code, Msg: e.Msg}
 		} else {
@@ -124,20 +124,21 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 		return nil, err
 	}
 	res.BodyLen = uint16(len(res.Data))
+	logrus.Debugln("uuid:", conn.GetUUID(), "res:", utils.StructToJsonOrError(res), "resMsg:", resMsg.String())
 	return
 }
 
 func (m *handler) retrySend() {
 	defer func() {
 		if e := recover(); e != nil {
-			fmt.Println("retrySend panic:", e)
+			logrus.Errorln("retrySend panic:", e)
 			m.retrySend()
 		}
 	}()
 	for {
 		list, err := m.retryList.GetWaitRetryMsg()
 		if err != nil {
-			fmt.Println(err)
+			logrus.Errorln(err)
 			break
 		}
 		for _, v := range list {
@@ -150,12 +151,12 @@ func (m *handler) retrySend() {
 			c, ok := conn.(server.Conn)
 			if !ok {
 				m.retryList.RemoveRetryMsg(v.MsgId)
-				fmt.Println("连接转换错误")
+				logrus.Errorln("连接转换错误")
 				continue
 			}
 			err = c.Write(v.Msg)
 			if err != nil {
-				fmt.Println(err)
+				logrus.Errorln(err)
 			}
 		}
 		//每隔100ms循环检查一次是否有需要发送的消息
@@ -167,7 +168,7 @@ func (m *handler) retrySend() {
 func (m *handler) checkConnectionActive() {
 	defer func() {
 		if e := recover(); e != nil {
-			fmt.Println("CheckConnectionActive panic:", e)
+			logrus.Errorln("CheckConnectionActive panic:", e)
 			m.checkConnectionActive()
 		}
 	}()
@@ -184,7 +185,7 @@ func (m *handler) checkConnectionActive() {
 			conn, ok := value.(server.Conn)
 			if !ok {
 				m.authConnections.Delete(key)
-				fmt.Println("CheckConnectionActive 连接有问题")
+				logrus.Errorln("CheckConnectionActive 连接有问题")
 				return true
 			}
 			//如果最近一次活跃时间在规定时间前，则关闭
@@ -202,7 +203,7 @@ func (m *handler) checkConnectionActive() {
 			conn, ok := value.(server.Conn)
 			if !ok {
 				m.waitAuthConnections.Delete(key)
-				fmt.Println("CheckConnectionActive 连接有问题")
+				logrus.Errorln("CheckConnectionActive 连接有问题")
 				return true
 			}
 			//如果最近一次活跃时间在规定时间前，则关闭

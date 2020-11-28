@@ -3,6 +3,7 @@ package gnet
 import (
 	"gim/server"
 	"github.com/panjf2000/gnet"
+	"github.com/sirupsen/logrus"
 )
 
 type conn struct {
@@ -32,6 +33,7 @@ func (m *conn) GetPingAt() int64 {
 }
 
 func (m *conn) Close() {
+	logrus.Debugln("连接被server主动关闭 uuid:", m.uuid, "remote:", m.remoteAddr)
 	m.c.Close()
 }
 
