@@ -12,5 +12,7 @@ type Conn interface {
 	SetVersion(version uint8)
 	SetToken(token string)
 	GetToken() string
+	SetUUID(uuid int64)
+	GetUUID() int64
 	Write(gim *GimProtocol) error
 }

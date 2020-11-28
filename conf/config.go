@@ -16,8 +16,9 @@ type RabbitConfig struct {
 }
 
 type Config struct {
-	Redis  *RedisConfig
-	Rabbit *RabbitConfig
+	Redis    *RedisConfig
+	Rabbit   *RabbitConfig
+	LogLevel string
 }
 
 func InitConfig() *Config {
@@ -32,7 +33,7 @@ func InitConfig() *Config {
 	v.BindEnv("ENV")
 	env := v.GetString("ENV")
 	if env == "" {
-		env = "local"
+		env = "default"
 	}
 	v.SetConfigName(fmt.Sprintf("config.%s", env))
 	err = v.MergeInConfig()
@@ -41,5 +42,6 @@ func InitConfig() *Config {
 	utils.Must(err)
 	err = v.UnmarshalKey("rabbit", &config.Rabbit)
 	utils.Must(err)
+	config.LogLevel = v.GetString("logLevel")
 	return &config
 }

@@ -12,6 +12,15 @@ type conn struct {
 	pingAt     int64
 	version    uint8
 	token      string
+	uuid       int64
+}
+
+func (m *conn) SetUUID(uuid int64) {
+	m.uuid = uuid
+}
+
+func (m *conn) GetUUID() int64 {
+	return m.uuid
 }
 
 func (m *conn) SetPingAt(t int64) {

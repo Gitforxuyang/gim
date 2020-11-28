@@ -7,6 +7,7 @@ import (
 	redis2 "gim/infra/redis"
 	"gim/server/gnet"
 	"gim/server/ws"
+	"github.com/sirupsen/logrus"
 	"os"
 	"os/signal"
 	"syscall"
@@ -14,6 +15,9 @@ import (
 
 func main() {
 	config := conf.InitConfig()
+	level, _ := logrus.ParseLevel(config.LogLevel)
+	logrus.SetFormatter(&logrus.JSONFormatter{TimestampFormat: "2006-01-02 15:04:05.999"})
+	logrus.SetLevel(level)
 	redis := redis2.InitClient(config)
 	handle := handler.NewHandler(redis)
 	tcpServer := gnet.NewGNetServer(9003, handle)

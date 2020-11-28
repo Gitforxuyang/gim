@@ -3,9 +3,13 @@ package handler
 import (
 	"errors"
 	"fmt"
+	err2 "gim/infra/err"
+	"gim/infra/utils"
+	gim2 "gim/proto"
 	"gim/server"
-	"gim/utils"
 	"github.com/go-redis/redis/v7"
+	"github.com/gogo/protobuf/proto"
+	"github.com/sirupsen/logrus"
 	"sync"
 	"time"
 )
@@ -39,11 +43,14 @@ func NewHandler(redis *redis.Client) IHandler {
 
 func (m *handler) Open(conn server.Conn) error {
 	conn.SetPingAt(utils.NowMillisecond())
+	conn.SetUUID(utils.GetSnowflakeId())
+	logrus.Debugln("连接建立 remote:", conn.GetRemoteAddr(), "uuid:", conn.GetUUID())
 	m.waitAuthConnections.Store(conn.GetRemoteAddr(), conn)
 	return nil
 }
 
 func (m *handler) Close(conn server.Conn) error {
+	logrus.Debugln("连接关闭 remote:", conn.GetRemoteAddr(), "uuid:", conn.GetUUID())
 	if conn.GetUid() == 0 {
 		m.waitAuthConnections.Delete(conn.GetRemoteAddr())
 		//从redis中删除状态
@@ -84,30 +91,39 @@ func (m *handler) Shutdown() {
 }
 
 func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server.GimProtocol, err error) {
-	utils.PrintStrcut(gim)
 	defer func() {
 		if e := recover(); e != nil {
 			err = errors.New(fmt.Sprintf("action panic err: %s", e))
 		}
 		if err != nil {
-			fmt.Println(err)
+			logrus.Errorln("action error: ", err)
 		}
 	}()
-	switch gim.CmdId {
-	case server.CmdId_Ping:
-		res, err = m.ping(conn, gim)
-	case server.CmdId_AuthReq:
-	case server.CmdId_LogoutReq:
-	case server.CmdId_FetchMessageReq:
-	case server.CmdId_NotifyAck:
-
-	case server.CmdId_SendMessageReq:
-	case server.CmdId_SyncLastIdReq:
-	case server.CmdId_SyncMessageReq:
-	default:
-		err = errors.New("非法cmdId")
-		return
+	logrus.Debugln("action version:", gim.Version, "cmdId:", gim.CmdId)
+	_mapping := m.handleMapping(gim.CmdId)
+	msg := _mapping.msg()
+	err = proto.Unmarshal(gim.Data, msg)
+	if err != nil {
+		return nil, err
 	}
+	resMsg, err := _mapping.handler(conn, msg)
+	if err != nil {
+		logrus.Errorln("action出现错误,", err.Error())
+		if e, ok := err.(*err2.GimError); ok {
+			resMsg = &gim2.BaseResp{Code: e.Code, Msg: e.Msg}
+		} else {
+			resMsg = &gim2.BaseResp{Code: err2.UnknownError.Code, Msg: err2.UnknownError.Msg}
+		}
+	}
+
+	res = &server.GimProtocol{}
+	res.Version = conn.GetVersion()
+	res.CmdId = _mapping.cmdId
+	res.Data, err = proto.Marshal(resMsg)
+	if err != nil {
+		return nil, err
+	}
+	res.BodyLen = uint16(len(res.Data))
 	return
 }
 

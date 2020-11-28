@@ -1,6 +1,11 @@
 package handler
 
-import "fmt"
+import (
+	"fmt"
+	"gim/proto"
+	"gim/server"
+	"github.com/gogo/protobuf/proto"
+)
 
 const (
 	//在线状态2分半就过期
@@ -15,4 +20,23 @@ func (m *handler) expireUserOnlineStatus(uid int64) bool {
 
 func userOnlineStatusKey(uid int64) string {
 	return fmt.Sprintf("u:%d", uid)
+}
+
+type mapping struct {
+	msg     func() proto.Message
+	handler handlerFunc
+	cmdId   uint8
+}
+
+func (m *handler) handleMapping(cmdId uint8) *mapping {
+	_mapping := &mapping{}
+	switch cmdId {
+	case server.CmdId_Ping:
+		_mapping.msg = func() proto.Message {
+			return &gim.Ping{}
+		}
+		_mapping.handler = m.ping
+		_mapping.cmdId = server.CmdId_Pong
+	}
+	return _mapping
 }

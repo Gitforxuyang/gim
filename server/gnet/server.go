@@ -27,11 +27,11 @@ func (m *gnetServer) OnShutdown(server gnet.Server) {
 }
 
 func (m *gnetServer) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
-	fmt.Println("连接建立：", c.RemoteAddr())
+	//fmt.Println("连接建立：", c.RemoteAddr())
 	con := conn{remoteAddr: c.RemoteAddr().String(), c: c}
 	err := m.handler.Open(&con)
 	if err != nil {
-		fmt.Println("因为连接建立错误，关闭连接 :", con.remoteAddr)
+		fmt.Println("gnet因为连接建立错误，关闭连接 :", con.remoteAddr)
 		return nil, gnet.Close
 	}
 	c.SetContext(&con)

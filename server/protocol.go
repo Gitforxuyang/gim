@@ -44,10 +44,10 @@ const (
 	MAX_BODY_LEN = 6000
 )
 
-func MakePong(conn Conn) *GimProtocol {
-	gim := GimProtocol{CmdId: CmdId_Pong, Version: conn.GetVersion()}
-	return &gim
-}
+//func MakePong(conn Conn) *GimProtocol {
+//	gim := GimProtocol{CmdId: CmdId_Pong, Version: conn.GetVersion()}
+//	return &gim
+//}
 
 func GimToByte(g *GimProtocol) ([]byte) {
 	buf := &bytes.Buffer{}

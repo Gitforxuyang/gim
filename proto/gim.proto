@@ -11,8 +11,14 @@ enum MessageAction {
     Location = 6; //地理位置
     File = 7; //文件
     Gift = 8; //礼物
-    Notify = 9; //通知
+//    Notify = 9; //通知
     Push = 10; //推送
+}
+message Ping{
+
+}
+message Pong{
+
 }
 
 message AuthReq {
@@ -35,10 +41,10 @@ message SendMessageReq {
     string content = 6;
 }
 message SendMessageResp {
-    int64 seq = 1;
-    int64 msgId = 2;
-    int32 code = 3; //如果code！=0 ，则是错误
-    string msg = 4;
+    int32 code = 1; //如果code！=0 ，则是错误
+    string msg = 2;
+    int64 seq = 3;
+    int64 msgId = 4;
 }
 //通知客户端有新消息
 message Notify {
@@ -60,18 +66,18 @@ message MessageBody {
     string content = 5;
 }
 message SyncMessageResp {
-    repeated MessageBody msgs = 1;
-    int32 code = 2;
-    string msg = 3;
+    int32 code = 1;
+    string msg = 2;
+    repeated MessageBody msgs = 3;
 }
 message FetchMessageReq {
     int64 uid = 1; //对方的id
     int64 msgId = 2; //获取到的最远的id
 }
 message FetchMessageResp {
-    repeated MessageBody msgs = 1;
-    int32 code = 2;
-    string msg = 3;
+    int32 code = 1;
+    string msg = 2;
+    repeated MessageBody msgs = 3;
 }
 message SyncLastIdReq {
     int64 lastId = 1;
@@ -87,4 +93,9 @@ message LogoutReq {
 }
 message LogoutResp {
 
+}
+
+message BaseResp {
+    int32 code = 1;
+    string msg = 2;
 }
