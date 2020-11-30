@@ -105,7 +105,7 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 		}
 		//有返回消息且有返回类型，则返回
 		if res != nil && res.CmdId != 0 {
-			conn.Write(res)
+			write(conn,res.CmdId,res.Data)
 		}
 		logrus.Debugln("action req:",
 			utils.StructToJsonOrError(gim),

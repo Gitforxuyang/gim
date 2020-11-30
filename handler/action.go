@@ -52,6 +52,7 @@ func (m *handler) auth(conn server.Conn, msg proto.Message) (res proto.Message, 
 	//如果这个有已经登陆的节点,则要踢出老节点
 	if node != "" {
 		if node == m.node {
+			m.kickOut(req.Uid, uuid, 1101, "用户在其它设备登陆")
 			m.clearLocalOnlineStatus(req.Uid, uuid)
 		}
 		err = m.clearUserOnlineStatus(req.Uid, uuid)
@@ -120,6 +121,20 @@ func (m *handler) fetchMsg(conn server.Conn, msg proto.Message) (res proto.Messa
 	return res, nil
 }
 
-func (m *handler) _login() {
+func (m *handler) kickOut(uid int64, uuid int64, code int32, msg string) {
+	if c, ok := m.authConnections.Load(uid); ok {
+		conn := c.(server.Conn)
+		notify := gim.KickOutNotify{Code: code, Msg: msg}
+		buf, _ := proto.Marshal(&notify)
+		write(conn, server.CmdId_KickOut, buf)
+	}
+}
 
+func write(conn server.Conn, cmdId uint8, data []byte) {
+	gim := &server.GimProtocol{}
+	gim.Version = conn.GetVersion()
+	gim.CmdId = cmdId
+	gim.Data = data
+	gim.BodyLen = uint16(len(gim.Data))
+	conn.Write(gim)
 }
