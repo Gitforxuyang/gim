@@ -6,9 +6,10 @@ import (
 	err2 "gim/infra/err"
 	"gim/infra/utils"
 	gim2 "gim/proto"
+	"gim/proto/im"
 	"gim/server"
 	"github.com/go-redis/redis/v7"
-	"github.com/gogo/protobuf/proto"
+	"github.com/golang/protobuf/proto"
 	"github.com/sirupsen/logrus"
 	"sync"
 	"time"
@@ -31,13 +32,15 @@ type handler struct {
 	waitAuthConnections sync.Map
 	retryList           *utils.RetryList
 	redis               *redis.Client
+	imClient            im.ImClient
 }
 
-func NewHandler(redis *redis.Client) IHandler {
+func NewHandler(redis *redis.Client, imClient im.ImClient) IHandler {
 	h := handler{retryList: utils.NewRetryList()}
 	go h.retrySend()
 	go h.checkConnectionActive()
 	h.redis = redis
+	h.imClient = imClient
 	return &h
 }
 
@@ -98,8 +101,17 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 		if err != nil {
 			logrus.Errorln("action error: ", err, "uuid:", conn.GetUUID())
 		}
+		//有返回消息且有返回类型，则返回
+		if res != nil && res.CmdId != 0 {
+			conn.Write(res)
+		}
+		logrus.Debugln("action req:",
+			utils.StructToJsonOrError(gim),
+			"uuid:", conn.GetUUID(),
+			"res:", utils.StructToJsonOrError(res),
+			"err:", utils.ErrStr(err),
+		)
 	}()
-	logrus.Debugln("action version:", gim.Version, "cmdId:", gim.CmdId, "uuid:", conn.GetUUID())
 	_mapping := m.handleMapping(gim.CmdId)
 	msg := _mapping.msg()
 	err = proto.Unmarshal(gim.Data, msg)
@@ -115,7 +127,9 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 			resMsg = &gim2.BaseResp{Code: err2.UnknownError.Code, Msg: err2.UnknownError.Msg}
 		}
 	}
-
+	if resMsg == nil {
+		return nil, nil
+	}
 	res = &server.GimProtocol{}
 	res.Version = conn.GetVersion()
 	res.CmdId = _mapping.cmdId
@@ -124,7 +138,8 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 		return nil, err
 	}
 	res.BodyLen = uint16(len(res.Data))
-	logrus.Debugln("uuid:", conn.GetUUID(), "res:", utils.StructToJsonOrError(res), "resMsg:", resMsg.String())
+	logrus.Debugln("action res:","uuid:", conn.GetUUID(),
+		"cmdId:", res.CmdId, "data:", utils.StructToJsonOrError(resMsg))
 	return
 }
 

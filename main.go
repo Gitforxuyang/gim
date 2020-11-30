@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gim/conf"
 	"gim/handler"
+	"gim/infra/grpc"
 	redis2 "gim/infra/redis"
 	"gim/server/gnet"
 	"gim/server/ws"
@@ -19,7 +20,8 @@ func main() {
 	logrus.SetFormatter(&logrus.JSONFormatter{TimestampFormat: "2006-01-02 15:04:05.999"})
 	logrus.SetLevel(level)
 	redis := redis2.InitClient(config)
-	handle := handler.NewHandler(redis)
+	imClient := grpc.InitClient(config)
+	handle := handler.NewHandler(redis, imClient)
 	tcpServer := gnet.NewGNetServer(9003, handle)
 	go tcpServer.Run()
 	wsServer := ws.NewWsServer(handle, 9004)

@@ -18,7 +18,12 @@ type RabbitConfig struct {
 type Config struct {
 	Redis    *RedisConfig
 	Rabbit   *RabbitConfig
+	GRpc     *GRpc
 	LogLevel string
+}
+
+type GRpc struct {
+	Endpoint string
 }
 
 func InitConfig() *Config {
@@ -41,6 +46,8 @@ func InitConfig() *Config {
 	err = v.UnmarshalKey("redis", &config.Redis)
 	utils.Must(err)
 	err = v.UnmarshalKey("rabbit", &config.Rabbit)
+	utils.Must(err)
+	err = v.UnmarshalKey("grpc", &config.GRpc)
 	utils.Must(err)
 	config.LogLevel = v.GetString("logLevel")
 	return &config

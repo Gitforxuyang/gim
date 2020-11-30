@@ -7,10 +7,10 @@ import (
 )
 
 type GimProtocol struct {
-	Version uint8
-	CmdId   uint8
-	BodyLen uint16
-	Data    []byte
+	Version uint8  `json:"version"`
+	CmdId   uint8  `json:"cmdId"`
+	BodyLen uint16 `json:"bodyLen"`
+	Data    []byte `json:"data"`
 }
 
 const (
@@ -22,14 +22,14 @@ const (
 	CmdId_AuthReq     uint8 = 21 //认证请求
 	CmdId_AuthResp    uint8 = 22 //认证返回
 	CmdId_LogoutReq   uint8 = 23 //退出
-	CmdId_LoutoutResp uint8 = 23
-	CmdId_KickOut     uint8 = 24 //踢出
+	CmdId_LoutoutResp uint8 = 24
+	CmdId_KickOut     uint8 = 26 //踢出
 
 	//偏业务逻辑项
 	CmdId_SendMessageReq   uint8 = 101 //发送消息
 	CmdId_SendMessageResp  uint8 = 102 //发送消息
-	CmdId_Notify           uint8 = 103
-	CmdId_NotifyAck        uint8 = 104
+	CmdId_Notify           uint8 = 104
+	CmdId_NotifyAck        uint8 = 103
 	CmdId_SyncMessageReq   uint8 = 105
 	CmdId_SyncMessageResp  uint8 = 106
 	CmdId_FetchMessageReq  uint8 = 107
@@ -85,10 +85,11 @@ func ByteToGim(buf []byte) (*GimProtocol) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = binary.Read(buffer, binary.BigEndian, &g.Data)
-	if err != nil {
-		fmt.Println(err)
-	}
+	g.Data = buf[4:]
+	//err = binary.Read(buffer, binary.BigEndian, &g.Data)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
 	return g
 }
 func IsCorrectCmdId(cmdId uint8) bool {

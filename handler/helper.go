@@ -43,6 +43,12 @@ func (m *handler) handleMapping(cmdId uint8) *mapping {
 		}
 		_mapping.cmdId = server.CmdId_AuthResp
 		_mapping.handler = m.auth
+	case server.CmdId_SendMessageReq:
+		_mapping.msg = func() proto.Message {
+			return &gim.SendMessageReq{}
+		}
+		_mapping.cmdId = server.CmdId_SendMessageResp
+		_mapping.handler = auth(m.sendMsg)
 	}
 
 	return _mapping

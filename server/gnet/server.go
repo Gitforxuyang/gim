@@ -6,6 +6,7 @@ import (
 	"gim/server"
 	"github.com/panjf2000/gnet"
 	"github.com/panjf2000/gnet/pool/goroutine"
+	"github.com/sirupsen/logrus"
 	"time"
 )
 
@@ -16,22 +17,22 @@ type gnetServer struct {
 }
 
 func (m *gnetServer) OnInitComplete(server gnet.Server) (action gnet.Action) {
-	fmt.Println("初始化完成")
+	logrus.Infoln("初始化完成")
 	return 0
 }
 
 func (m *gnetServer) OnShutdown(server gnet.Server) {
-	//fmt.Println("服务开始关闭")
+	//logrus.Errorln("服务开始关闭")
 	//m.handler.Shutdown()
-	//fmt.Println("服务关闭完成")
+	//logrus.Errorln("服务关闭完成")
 }
 
 func (m *gnetServer) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
-	//fmt.Println("连接建立：", c.RemoteAddr())
+	//logrus.Errorln("连接建立：", c.RemoteAddr())
 	con := conn{remoteAddr: c.RemoteAddr().String(), c: c}
 	err := m.handler.Open(&con)
 	if err != nil {
-		fmt.Println("gnet因为连接建立错误，关闭连接 :", con.remoteAddr)
+		logrus.Errorln("gnet因为连接建立错误，关闭连接 :", con.remoteAddr)
 		return nil, gnet.Close
 	}
 	c.SetContext(&con)
@@ -39,11 +40,11 @@ func (m *gnetServer) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
 }
 
 func (m *gnetServer) OnClosed(c gnet.Conn, err error) (action gnet.Action) {
-	//fmt.Println("连接关闭：", c.RemoteAddr(), "err:", err)
+	//logrus.Errorln("连接关闭：", c.RemoteAddr(), "err:", err)
 	con := c.Context().(server.Conn)
 	err = m.handler.Close(con)
 	if err != nil {
-		fmt.Println("关闭时报错: ", err)
+		logrus.Errorln("关闭时报错: ", err)
 	}
 	return 0
 }
@@ -56,12 +57,12 @@ func (m *gnetServer) React(frame []byte, c gnet.Conn) (out []byte, action gnet.A
 	con := c.Context().(server.Conn)
 	con.SetVersion(gim.Version)
 	m.workPool.Submit(func() {
-		res, err := m.handler.Action(con, gim)
-		if err != nil {
-			fmt.Println("handler出现error，直接忽略:", err)
-		} else {
-			c.AsyncWrite(server.GimToByte(res))
-		}
+		m.handler.Action(con, gim)
+		//if err != nil {
+		//	logrus.Errorln("handler出现error，直接忽略:", err)
+		//} else {
+		//	c.AsyncWrite(server.GimToByte(res))
+		//}
 	})
 	return
 }
@@ -76,7 +77,7 @@ func NewGNetServer(port int32, handler handler.IHandler) server.Server {
 }
 
 func (m *gnetServer) Run() {
-	fmt.Println("gnet server run")
+	logrus.Infoln("gnet server run")
 	err := gnet.Serve(m,
 		fmt.Sprintf("tcp://0.0.0.0:%d", m.port),
 		gnet.WithMulticore(true),

@@ -1,8 +1,11 @@
 {
   "redis": {
-    "addr": "127.0.0.1:6379",
+    "addr": "192.168.3.3:6379",
     "password": "",
     "db": 0
+  },
+  "grpc": {
+    "endpoint": "localhost:8080"
   },
   "logLevel": "debug"
 }

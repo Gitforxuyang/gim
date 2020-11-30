@@ -4,11 +4,10 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"fmt"
 	"gim/server"
 	"github.com/panjf2000/gnet"
+	"github.com/sirupsen/logrus"
 )
-
 
 type codec struct {
 }
@@ -37,7 +36,7 @@ func (m *codec) Decode(c gnet.Conn) (protocolBuf []byte, err error) {
 	g := &server.GimProtocol{}
 	defer func() {
 		if err != nil && err.Error() != "没有更多数据了" {
-			fmt.Println(err)
+			logrus.Errorln(err)
 		}
 	}()
 	len, buf := c.ReadN(server.HEAD_LEN)
@@ -72,4 +71,3 @@ func (m *codec) Decode(c gnet.Conn) (protocolBuf []byte, err error) {
 	protocolBuf = server.GimToByte(g)
 	return protocolBuf, nil
 }
-

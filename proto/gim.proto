@@ -24,6 +24,11 @@ message Pong{
 message AuthReq {
     string token = 1;
     int64 uid = 2;
+    string sdkVersion = 4; //sdk版本
+    string deviceId = 5; //设备id
+    string platform = 6; // 平台 android/iOS
+    string model = 7; //机型 iPhone4/Mi8
+    string system = 8; //系统版本  iOS10/android7.0
 }
 message AuthRes {
     int32 code = 1;
