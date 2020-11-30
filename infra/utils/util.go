@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -47,4 +48,15 @@ func NowSecond() int32 {
 }
 func NowMillisecond() int64 {
 	return time.Now().UnixNano() / 1e6
+}
+
+func GenUniqueId() string {
+	rand.Seed(time.Now().UnixNano())
+	var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+	b := make([]rune, 4)
+	for i := range b {
+		b[i] = letterRunes[rand.Int63()%int64(len(letterRunes))]
+	}
+	return string(b)
 }

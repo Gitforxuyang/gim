@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b30f0fd-6a85-460d-bc70-478f580a338e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gim.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gim.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/action.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/action.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/helper.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/err/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/infra/err/error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/utils/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/infra/utils/util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/con.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/con.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/gnet/codec.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/gnet/codec.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/gnet/conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/gnet/conn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/gnet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/gnet/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/serv.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/serv.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/ws/conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/ws/conn.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gimServer/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gimServer/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gimServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gimServer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../im/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../im/Makefile" afterDir="false" />
@@ -30,23 +41,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/handler/handler.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="70" column="21" lean-forward="true" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
+            <state relative-caret-position="232">
+              <caret line="43" column="25" lean-forward="true" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infra/utils/snowflake.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infra/utils/util.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/handler/action.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+            <state relative-caret-position="74">
+              <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/handler/helper.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-166">
+              <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infra/err/error.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/con.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/conf/config.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="735">
+              <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
               <folding>
-                <element signature="e#17#169#0" expanded="true" />
+                <element signature="e#14#76#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/gnet/conn.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/ws/conn.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -87,12 +170,8 @@
         <option value="$PROJECT_DIR$/utils/retryList.go" />
         <option value="$PROJECT_DIR$/go.mod" />
         <option value="$PROJECT_DIR$/handler/middleware.go" />
-        <option value="$PROJECT_DIR$/server/con.go" />
         <option value="$PROJECT_DIR$/infra/utils/retryList.go" />
         <option value="$PROJECT_DIR$/infra/redis/client.go" />
-        <option value="$PROJECT_DIR$/infra/err/error.go" />
-        <option value="$PROJECT_DIR$/server/gnet/conn.go" />
-        <option value="$PROJECT_DIR$/server/ws/conn.go" />
         <option value="$PROJECT_DIR$/Readme.md" />
         <option value="$PROJECT_DIR$/proto/gim.proto" />
         <option value="$PROJECT_DIR$/Makefile" />
@@ -105,16 +184,20 @@
         <option value="$PROJECT_DIR$/server/gnet/codec.go" />
         <option value="$PROJECT_DIR$/server/gnet/server.go" />
         <option value="$PROJECT_DIR$/server/ws/server.go" />
-        <option value="$PROJECT_DIR$/infra/utils/util.go" />
         <option value="$PROJECT_DIR$/test/index_test.go" />
         <option value="$PROJECT_DIR$/server/protocol.go" />
+        <option value="$PROJECT_DIR$/infra/utils/util.go" />
         <option value="$PROJECT_DIR$/handler/handler.go" />
+        <option value="$PROJECT_DIR$/server/con.go" />
+        <option value="$PROJECT_DIR$/server/gnet/conn.go" />
+        <option value="$PROJECT_DIR$/server/ws/conn.go" />
+        <option value="$PROJECT_DIR$/infra/err/error.go" />
         <option value="$PROJECT_DIR$/handler/helper.go" />
         <option value="$PROJECT_DIR$/handler/action.go" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="721" />
@@ -125,7 +208,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -141,12 +223,35 @@
             <path>
               <item name="gim" type="b2602c69:ProjectViewProjectNode" />
               <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="infra" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="infra" type="462c0819:PsiDirectoryNode" />
+              <item name="err" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
               <item name="proto" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gim" type="b2602c69:ProjectViewProjectNode" />
               <item name="gim" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="gnet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="ws" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gim" type="b2602c69:ProjectViewProjectNode" />
@@ -161,6 +266,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -227,10 +333,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1280" height="721" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="721" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27786753" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2819063" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -243,7 +349,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3290938" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3290938" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3290938" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -266,25 +372,21 @@
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/server/gnet/server.go</url>
           <line>60</line>
-          <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/server/gnet/codec.go</url>
           <line>26</line>
-          <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/handler/handler.go</url>
-          <line>120</line>
-          <properties />
+          <line>122</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/handler/handler.go</url>
-          <line>114</line>
-          <properties />
+          <line>116</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
@@ -303,13 +405,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="568" column="20" selection-start-line="568" selection-start-column="20" selection-end-line="568" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/go/pkg/mod/github.com/go-redis/redis/v7@v7.4.0/commands.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="419" column="14" lean-forward="true" selection-start-line="419" selection-start-column="14" selection-end-line="419" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -372,13 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/con.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/infra/utils/retryList.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -396,23 +484,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infra/utils/snowflake.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/ws/conn.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
-          <folding>
-            <element signature="e#12#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/serv.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -425,13 +496,6 @@
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infra/err/error.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -473,16 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/conf/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
-          <folding>
-            <element signature="e#14#76#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -531,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/gnet/conn.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="35" column="74" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/go/pkg/mod/github.com/panjf2000/gnet@v1.3.2/connection_unix.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
@@ -577,13 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="57" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infra/utils/util.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
@@ -632,27 +672,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/helper.go">
+    <entry file="file://$USER_HOME$/go/pkg/mod/github.com/go-redis/redis/v7@v7.4.0/commands.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+        <state relative-caret-position="190">
+          <caret line="1007" column="14" lean-forward="true" selection-start-line="1007" selection-start-column="14" selection-end-line="1007" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/action.go">
+    <entry file="file://$PROJECT_DIR$/conf/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+        <state relative-caret-position="735">
+          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
           <folding>
-            <element signature="e#17#169#0" expanded="true" />
+            <element signature="e#14#76#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infra/utils/snowflake.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infra/utils/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/con.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/gnet/conn.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/ws/conn.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infra/err/error.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/handler/handler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="70" column="21" lean-forward="true" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
+        <state relative-caret-position="232">
+          <caret line="43" column="25" lean-forward="true" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/helper.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-166">
+          <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/action.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
         </state>
       </provider>
     </entry>

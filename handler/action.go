@@ -40,10 +40,33 @@ func (m *handler) auth(conn server.Conn, msg proto.Message) (res proto.Message, 
 	if err != nil {
 		return nil, err
 	}
-	//本地完成登录态
-	conn.SetUid(req.Uid)
-	m.authConnections.Store(conn.GetUid(), conn)
-	m.waitAuthConnections.Delete(conn.GetRemoteAddr())
+	lock, err := m.lock(req.Uid)
+	if err != nil {
+		return nil, err
+	}
+	defer lock.unlock()
+	node, uuid, err := m.getUserOnlineStatus(req.Uid)
+	if err != nil {
+		return nil, err
+	}
+	//如果这个有已经登陆的节点,则要踢出老节点
+	if node != "" {
+		if node == m.node {
+			m.clearLocalOnlineStatus(req.Uid, uuid)
+		}
+		err = m.clearUserOnlineStatus(req.Uid, uuid)
+		if err != nil {
+			return nil, err
+		}
+	}
+	err = m.saveLocalOnlineStatus(conn, req.Uid, conn.GetUUID())
+	if err != nil {
+		return nil, err
+	}
+	err = m.saveUserOnlineStatus(req.Uid, conn.GetUUID())
+	if err != nil {
+		return nil, err
+	}
 	return &gim.AuthRes{}, nil
 }
 

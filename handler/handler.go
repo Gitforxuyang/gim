@@ -33,6 +33,7 @@ type handler struct {
 	retryList           *utils.RetryList
 	redis               *redis.Client
 	imClient            im.ImClient
+	node                string //节点id
 }
 
 func NewHandler(redis *redis.Client, imClient im.ImClient) IHandler {
@@ -41,6 +42,7 @@ func NewHandler(redis *redis.Client, imClient im.ImClient) IHandler {
 	go h.checkConnectionActive()
 	h.redis = redis
 	h.imClient = imClient
+	h.node = utils.GenUniqueId()
 	return &h
 }
 
@@ -138,7 +140,7 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 		return nil, err
 	}
 	res.BodyLen = uint16(len(res.Data))
-	logrus.Debugln("action res:","uuid:", conn.GetUUID(),
+	logrus.Debugln("action res:", "uuid:", conn.GetUUID(),
 		"cmdId:", res.CmdId, "data:", utils.StructToJsonOrError(resMsg))
 	return
 }

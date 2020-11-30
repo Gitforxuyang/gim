@@ -68,3 +68,7 @@ func (m *conn) GetToken() string {
 func (m *conn) Write(gim *server.GimProtocol) error {
 	return m.c.WriteMessage(1, server.GimToByte(gim))
 }
+
+func (m *conn) Clear() {
+	m.uid = 0
+}
