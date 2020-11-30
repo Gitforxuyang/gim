@@ -40,7 +40,10 @@ func (m *handler) auth(conn server.Conn, msg proto.Message) (res proto.Message, 
 	if err != nil {
 		return nil, err
 	}
+	//本地完成登录态
 	conn.SetUid(req.Uid)
+	m.authConnections.Store(conn.GetUid(), conn)
+	m.waitAuthConnections.Delete(conn.GetRemoteAddr())
 	return &gim.AuthRes{}, nil
 }
 
@@ -94,7 +97,6 @@ func (m *handler) fetchMsg(conn server.Conn, msg proto.Message) (res proto.Messa
 	return res, nil
 }
 
-
-func (m *handler) _login(){
+func (m *handler) _login() {
 
 }

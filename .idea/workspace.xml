@@ -2,69 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b30f0fd-6a85-460d-bc70-478f580a338e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/gim.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra/grpc/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto/im.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/gnet/codec.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/serv.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/index_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/.idea/gimServer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/app/service/im.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/app/service/index.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/app/service/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/conf/config.default.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/conf/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/conf/config.local.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/domain/entity/im.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/domain/entity/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/domain/repo/im.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/domain/repo/index.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/handler/handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/infra/err/error.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/infra/mongo/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/infra/redis/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/infra/utils/snowflake.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/infra/utils/util.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/infra/wrapper/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../gimServer/proto/im.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../im/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../im/client/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../im/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../im/proto/msg.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../im/server/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../im/utils/buffer.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../im/utils/util.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/ants/demo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/conf.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/encry/rsa.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/gnet/demo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/metrics/demo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/proto/message.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/skiplist/skiplist.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mysqlDemo/timeline/im.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../pushkit-go-sample/.idea/pushkit-go-sample.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../studyDemo/算法/链表反转.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.default.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.default.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/action.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/action.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/helper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/utils/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/infra/utils/util.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto/gim.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/proto/gim.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto/gim.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/gim.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/gnet/codec.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/gnet/codec.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/gnet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/gnet/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/protocol.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/protocol.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/ws/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/ws/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gimServer/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gimServer/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gimServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gimServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../im/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../im/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../im/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/../im/client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../im/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../im/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../im/proto/msg.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../im/proto/msg.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../im/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/../im/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../im/utils/buffer.go" beforeDir="false" afterPath="$PROJECT_DIR$/../im/utils/buffer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../im/utils/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/../im/utils/util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysqlDemo/ants/demo.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mysqlDemo/ants/demo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysqlDemo/encry/rsa.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mysqlDemo/encry/rsa.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysqlDemo/gnet/demo.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mysqlDemo/gnet/demo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysqlDemo/metrics/demo.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mysqlDemo/metrics/demo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysqlDemo/proto/message.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../mysqlDemo/proto/message.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysqlDemo/skiplist/skiplist.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mysqlDemo/skiplist/skiplist.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysqlDemo/timeline/im.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mysqlDemo/timeline/im.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../studyDemo/算法/链表反转.go" beforeDir="false" afterPath="$PROJECT_DIR$/../studyDemo/算法/链表反转.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,92 +30,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/handler/handler.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-              <folding>
-                <element signature="e#17#229#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="217">
+              <caret line="70" column="21" lean-forward="true" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/helper.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/handler/action.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="42" column="24" lean-forward="true" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+            <state relative-caret-position="289">
+              <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
               <folding>
                 <element signature="e#17#169#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/index_test.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
-              <folding>
-                <element signature="e#14#124#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/proto/gim.proto">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="47" column="23" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/ws/server.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/gnet/codec.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/protocol.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/gnet/server.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="74" column="62" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -219,19 +106,18 @@
         <option value="$PROJECT_DIR$/server/gnet/server.go" />
         <option value="$PROJECT_DIR$/server/ws/server.go" />
         <option value="$PROJECT_DIR$/infra/utils/util.go" />
-        <option value="$PROJECT_DIR$/handler/action.go" />
         <option value="$PROJECT_DIR$/test/index_test.go" />
         <option value="$PROJECT_DIR$/server/protocol.go" />
         <option value="$PROJECT_DIR$/handler/handler.go" />
         <option value="$PROJECT_DIR$/handler/helper.go" />
+        <option value="$PROJECT_DIR$/handler/action.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="160" />
-    <option name="y" value="113" />
-    <option name="width" value="960" />
-    <option name="height" value="541" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="721" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -344,7 +230,7 @@
     <frame x="-1" y="23" width="1280" height="721" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27786753" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27786753" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -357,7 +243,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3290938" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3290938" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3290938" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -736,13 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/helper.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/index_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -753,23 +632,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/handler.go">
+    <entry file="file://$PROJECT_DIR$/handler/helper.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-          <folding>
-            <element signature="e#17#229#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="660">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/handler/action.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="42" column="24" lean-forward="true" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+        <state relative-caret-position="289">
+          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
           <folding>
             <element signature="e#17#169#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="70" column="21" lean-forward="true" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
         </state>
       </provider>
     </entry>
