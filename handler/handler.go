@@ -4,7 +4,9 @@ import (
 	"errors"
 	"fmt"
 	err2 "gim/infra/err"
+	"gim/infra/metrics"
 	"gim/infra/rabbit"
+	"gim/infra/ratelimiter"
 	"gim/infra/utils"
 	gim2 "gim/proto"
 	"gim/proto/im"
@@ -21,6 +23,7 @@ type IHandler interface {
 	Close(conn server.Conn) error
 	Shutdown()
 	Action(conn server.Conn, gim *server.GimProtocol) (*server.GimProtocol, error)
+	Metrics() (int32, int32)
 }
 
 const (
@@ -118,12 +121,25 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 			"err:", utils.ErrStr(err),
 		)
 	}()
+	auth := false
+	if conn.GetUid() == 0 {
+		auth = true
+	}
+	metrics.Req(gim.CmdId, auth)
+	//被限流的消息会被直接吞掉，也可以按需返回被限流的情况，目前没必要
+	entry, err := ratelimiter.Token(conn.GetUid(), conn.GetRemoteAddr())
+	if err != nil {
+		logrus.Errorln("uuid:", conn.GetUid(), "被限流 err:", err)
+		return nil, err
+	}
+	defer entry.Exit()
 	_mapping := m.handleMapping(gim.CmdId)
 	msg := _mapping.msg()
 	err = proto.Unmarshal(gim.Data, msg)
 	if err != nil {
 		return nil, err
 	}
+	//业务端的所有报错，全部组装返回
 	resMsg, err := _mapping.handler(conn, msg)
 	if err != nil {
 		logrus.Errorln("action出现错误,err:", err.Error(), "uuid:", conn.GetUUID())
@@ -234,4 +250,17 @@ func (m *handler) checkConnectionActive() {
 			return true
 		})
 	}
+}
+
+func (m *handler) Metrics() (int32, int32) {
+	var auth, waitAuth int32
+	m.authConnections.Range(func(key, value interface{}) bool {
+		auth++
+		return true
+	})
+	m.waitAuthConnections.Range(func(key, value interface{}) bool {
+		waitAuth++
+		return true
+	})
+	return auth, waitAuth
 }

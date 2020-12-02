@@ -5,7 +5,9 @@ import (
 	"gim/conf"
 	"gim/handler"
 	"gim/infra/grpc"
+	"gim/infra/metrics"
 	"gim/infra/rabbit"
+	"gim/infra/ratelimiter"
 	redis2 "gim/infra/redis"
 	"gim/server/gnet"
 	"gim/server/ws"
@@ -20,10 +22,12 @@ func main() {
 	level, _ := logrus.ParseLevel(config.LogLevel)
 	logrus.SetFormatter(&logrus.JSONFormatter{TimestampFormat: "2006-01-02 15:04:05.999"})
 	logrus.SetLevel(level)
+	ratelimiter.Init()
 	redis := redis2.InitClient(config)
 	imClient := grpc.InitClient(config)
 	queue := rabbit.InitClient(config)
-	handle := handler.NewHandler(redis, imClient,queue)
+	handle := handler.NewHandler(redis, imClient, queue)
+	go metrics.RunMetrics(handle)
 	tcpServer := gnet.NewGNetServer(9003, handle)
 	go tcpServer.Run()
 	wsServer := ws.NewWsServer(handle, 9004)
