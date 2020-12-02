@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b30f0fd-6a85-460d-bc70-478f580a338e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/consume.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/consume.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/helper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/rabbit/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/infra/rabbit/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/utils/retryList.go" beforeDir="false" afterPath="$PROJECT_DIR$/infra/utils/retryList.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/protocol.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/protocol.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/index_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/index_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gimServer/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gimServer/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gimServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gimServer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gimServer/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../gimServer/Makefile" afterDir="false" />
@@ -115,11 +108,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infra/rabbit/client.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+            <state relative-caret-position="124">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Readme.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="210">
+                <caret line="14" selection-start-line="14" selection-end-line="14" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -162,7 +167,6 @@
         <option value="$PROJECT_DIR$/go.mod" />
         <option value="$PROJECT_DIR$/handler/middleware.go" />
         <option value="$PROJECT_DIR$/infra/redis/client.go" />
-        <option value="$PROJECT_DIR$/Readme.md" />
         <option value="$PROJECT_DIR$/proto/gim.proto" />
         <option value="$PROJECT_DIR$/Makefile" />
         <option value="$PROJECT_DIR$/infra/grpc/client.go" />
@@ -188,6 +192,7 @@
         <option value="$PROJECT_DIR$/server/protocol.go" />
         <option value="$PROJECT_DIR$/handler/consume.go" />
         <option value="$PROJECT_DIR$/infra/rabbit/client.go" />
+        <option value="$PROJECT_DIR$/Readme.md" />
       </list>
     </option>
   </component>
@@ -208,48 +213,6 @@
             <path>
               <item name="gim" type="b2602c69:ProjectViewProjectNode" />
               <item name="gim" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="handler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="infra" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="infra" type="462c0819:PsiDirectoryNode" />
-              <item name="rabbit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="infra" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="proto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gim" type="b2602c69:ProjectViewProjectNode" />
@@ -439,14 +402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -754,8 +709,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infra/rabbit/client.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="124">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="210">
+            <caret line="14" selection-start-line="14" selection-end-line="14" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
