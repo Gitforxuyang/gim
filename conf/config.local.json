@@ -2,9 +2,12 @@
   "redis": {
     "addr": "192.168.3.3:6379",
     "password": "",
-    "db": 0
+    "db": 10
   },
   "grpc": {
-    "endpoint": ""
+    "endpoint": "localhost:8080"
+  },
+  "rabbit": {
+    "addr": "amqp://guest:guest@192.168.3.23:5672/"
   }
 }

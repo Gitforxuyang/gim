@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	err2 "gim/infra/err"
+	"gim/infra/rabbit"
 	"gim/infra/utils"
 	gim2 "gim/proto"
 	"gim/proto/im"
@@ -34,15 +35,18 @@ type handler struct {
 	redis               *redis.Client
 	imClient            im.ImClient
 	node                string //节点id
+	queue               *rabbit.Queue
 }
 
-func NewHandler(redis *redis.Client, imClient im.ImClient) IHandler {
+func NewHandler(redis *redis.Client, imClient im.ImClient, queue *rabbit.Queue) IHandler {
 	h := handler{retryList: utils.NewRetryList()}
 	go h.retrySend()
 	go h.checkConnectionActive()
 	h.redis = redis
 	h.imClient = imClient
 	h.node = utils.GenUniqueId()
+	h.queue = queue
+	h.runConsume()
 	return &h
 }
 
@@ -51,6 +55,8 @@ func (m *handler) Open(conn server.Conn) error {
 	conn.SetUUID(utils.GetSnowflakeId())
 	logrus.Debugln("连接建立 remote:", conn.GetRemoteAddr(), "uuid:", conn.GetUUID())
 	m.waitAuthConnections.Store(conn.GetRemoteAddr(), conn)
+	//为了测试
+	conn.SetUid(1)
 	return nil
 }
 
@@ -105,7 +111,7 @@ func (m *handler) Action(conn server.Conn, gim *server.GimProtocol) (res *server
 		}
 		//有返回消息且有返回类型，则返回
 		if res != nil && res.CmdId != 0 {
-			write(conn,res.CmdId,res.Data)
+			write(conn, res.CmdId, res.Data)
 		}
 		logrus.Debugln("action req:",
 			utils.StructToJsonOrError(gim),

@@ -54,6 +54,8 @@ func (m *handler) auth(conn server.Conn, msg proto.Message) (res proto.Message, 
 		if node == m.node {
 			m.kickOut(req.Uid, uuid, 1101, "用户在其它设备登陆")
 			m.clearLocalOnlineStatus(req.Uid, uuid)
+		} else {
+			//m.imClient.ki
 		}
 		err = m.clearUserOnlineStatus(req.Uid, uuid)
 		if err != nil {
