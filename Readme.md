@@ -16,4 +16,4 @@
 #### 整体设计如下
 
 
-![avatar](gim.png)
+![avatar](./gim.png)
