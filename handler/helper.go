@@ -36,6 +36,9 @@ func (m *handler) getUserOnlineStatus(uid int64) (string, int64, error) {
 	if err != nil {
 		return "", 0, err
 	}
+	if len(data) == 0 {
+		return "", 0, nil
+	}
 	uuid, err := strconv.ParseInt(data["uuid"], 10, 64)
 	if err != nil {
 		return "", 0, err

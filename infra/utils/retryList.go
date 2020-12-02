@@ -2,8 +2,8 @@ package utils
 
 import (
 	"fmt"
-	"gim/server"
 	"gim/infra/utils/skiplist"
+	"gim/server"
 	"strconv"
 	"sync"
 )
@@ -51,14 +51,14 @@ func (m *RetryList) AddRetryMsg(msg *server.GimProtocol, uid int64, msgId int64)
 	ack := WaitAckMsg{Msg: msg, RetryTime: NowMillisecond() + RETRY_DURATION,
 		RetryCount: RETRY_COUNT, Uid: uid, MsgId: msgId}
 	m.skipList.Insert(&ack)
-	m.msgIdMap.Store(msgId, &ack)
+	m.msgIdMap.Store(fmt.Sprintf("%d-%d", msgId, uid), &ack)
 	return nil
 }
 
-func (m *RetryList) RemoveRetryMsg(msgId int64) error {
+func (m *RetryList) RemoveRetryMsg(msgId int64, uid int64) error {
 	m.Lock()
 	defer m.Unlock()
-	ack, ok := m.msgIdMap.Load(msgId)
+	ack, ok := m.msgIdMap.Load(fmt.Sprintf("%d-%d", msgId, uid))
 	if !ok {
 		return nil
 	}
@@ -90,7 +90,7 @@ func (m *RetryList) GetWaitRetryMsg() (list []*WaitAckMsg, err error) {
 	for _, v := range list {
 		m.skipList.Delete(v)
 		if v.RetryCount <= 0 {
-			m.msgIdMap.Delete(v.MsgId)
+			m.msgIdMap.Delete(fmt.Sprintf("%d-%d", v.MsgId, v.Uid))
 		} else {
 			v.RetryCount--
 			v.RetryTime += RETRY_DURATION

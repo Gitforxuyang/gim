@@ -55,8 +55,6 @@ func (m *handler) Open(conn server.Conn) error {
 	conn.SetUUID(utils.GetSnowflakeId())
 	logrus.Debugln("连接建立 remote:", conn.GetRemoteAddr(), "uuid:", conn.GetUUID())
 	m.waitAuthConnections.Store(conn.GetRemoteAddr(), conn)
-	//为了测试
-	conn.SetUid(1)
 	return nil
 }
 
@@ -168,12 +166,12 @@ func (m *handler) retrySend() {
 			conn, ok := m.authConnections.Load(v.Uid)
 			//当某些场景下，需要发送的连接已经不存在了（比如用户下线了）,则删除消息
 			if !ok {
-				m.retryList.RemoveRetryMsg(v.MsgId)
+				m.retryList.RemoveRetryMsg(v.MsgId, v.Uid)
 				continue
 			}
 			c, ok := conn.(server.Conn)
 			if !ok {
-				m.retryList.RemoveRetryMsg(v.MsgId)
+				m.retryList.RemoveRetryMsg(v.MsgId, v.Uid)
 				logrus.Errorln("连接转换错误")
 				continue
 			}

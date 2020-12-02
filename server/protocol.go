@@ -24,6 +24,7 @@ const (
 	CmdId_LogoutReq   uint8 = 23 //退出
 	CmdId_LoutoutResp uint8 = 24
 	CmdId_KickOut     uint8 = 26 //踢出
+	CmdId_Broadcast   uint8 = 28 //全服广播
 
 	//偏业务逻辑项
 	CmdId_SendMessageReq   uint8 = 101 //发送消息

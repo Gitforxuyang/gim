@@ -20,13 +20,17 @@ type ConsumeHandle func(msg amqp.Delivery)
 func (m *Queue) Consume(h ConsumeHandle) {
 	for i := 0; i < 2; i++ {
 		go func(index int) {
+			defer func() {
+				if e := recover(); e != nil {
+					logrus.Errorln("consume panic err:", e)
+				}
+			}()
 			ch, _ := m.c.Channel()
 			ch.Qos(500, 0, false)
 			msgs, err := ch.Consume(m.queue.Name, fmt.Sprintf("gim_node.%s-%d", m.node, index), true, false, false, false, nil)
 			for {
 				utils.Must(err)
 				msg := <-msgs
-				logrus.Debugln("consume receive msg:", msg)
 				h(msg)
 			}
 		}(i)

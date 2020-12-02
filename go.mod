@@ -8,6 +8,7 @@ require (
 	github.com/gogo/protobuf v1.2.1
 	github.com/golang/protobuf v1.4.1
 	github.com/gorilla/websocket v1.4.2
+	github.com/mitchellh/mapstructure v1.1.2
 	github.com/panjf2000/gnet v1.3.2
 	github.com/sirupsen/logrus v1.2.0
 	github.com/spf13/viper v1.7.1
